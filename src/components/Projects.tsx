@@ -1,5 +1,3 @@
-import { ExternalLink, Github, Award } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import salesImg from "@/assets/project-sales.jpg";
 import cloudImg from "@/assets/project-cloud.jpg";
 
@@ -12,25 +10,16 @@ const Projects = () => {
         "A comprehensive e-commerce platform featuring real-time order tracking, secure user authentication, and RESTful API integration for seamless data flow. Achieved 50% reduction in report preparation time.",
       image: salesImg,
       tech: ["React", "Java", "REST API", "Authentication", "Real-time Tracking"],
-      links: {
-        demo: "#",
-        github: "#",
-      },
       gradient: "from-primary to-secondary",
     },
     {
       title: "Cloud Secrets Management",
       subtitle: "AWS & Snowflake Integration",
       description:
-        "Developed a robust cloud-based secrets management system integrating AWS services with Snowflake for secure data handling. Won KSCST competition for innovative approach to cloud security.",
+        "Developed a robust cloud-based secrets management system integrating AWS services with Snowflake for secure data handling. Selected for 47th KSCST competition in 2024.",
       image: cloudImg,
       tech: ["AWS", "Snowflake", "Cloud Security", "Python", "Data Management"],
-      links: {
-        demo: "#",
-        github: "#",
-      },
       gradient: "from-secondary to-accent",
-      award: "KSCST Competition Winner",
     },
   ];
 
@@ -73,14 +62,6 @@ const Projects = () => {
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    {project.award && (
-                      <div className="absolute top-4 right-4 z-20 bg-accent/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 box-glow-green">
-                        <Award className="w-4 h-4" />
-                        <span className="text-sm font-semibold text-accent-foreground">
-                          {project.award}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Content */}
@@ -100,7 +81,7 @@ const Projects = () => {
                     </p>
 
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech, i) => (
                         <span
                           key={i}
@@ -109,26 +90,6 @@ const Projects = () => {
                           {tech}
                         </span>
                       ))}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-4">
-                      <Button
-                        variant="outline"
-                        className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                        onClick={() => window.open(project.links.demo, "_blank")}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
-                        onClick={() => window.open(project.links.github, "_blank")}
-                      >
-                        <Github className="w-4 h-4 mr-2" />
-                        Source Code
-                      </Button>
                     </div>
                   </div>
                 </div>

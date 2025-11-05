@@ -6,7 +6,7 @@ const Experience = () => {
       title: "Full Stack Developer Intern",
       company: "Kodnest Technologies",
       location: "Bengaluru, Karnataka",
-      period: "Jun 2024 - Present",
+      period: "October 2024 - July 2025",
       achievements: [
         "Developed Sales Savvy, a comprehensive e-commerce platform with real-time tracking",
         "Implemented secure authentication and RESTful APIs for seamless data flow",
