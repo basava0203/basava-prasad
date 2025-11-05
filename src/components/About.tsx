@@ -16,13 +16,6 @@ const About = () => {
       color: "text-secondary",
       glow: "box-glow-purple",
     },
-    {
-      icon: Users,
-      value: "100+",
-      label: "Collaborative Projects",
-      color: "text-accent",
-      glow: "box-glow-green",
-    },
   ];
 
   return (
