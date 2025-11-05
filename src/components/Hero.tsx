@@ -65,7 +65,7 @@ const Hero = () => {
           </div>
 
           {/* Name with typewriter effect */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-tech">
             <span className="glow-blue text-primary inline-block min-h-[1.2em]">
               {displayText}
               <span className="animate-pulse">|</span>
