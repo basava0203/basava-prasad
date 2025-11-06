@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -130,12 +130,6 @@ const Hero = () => {
               className="text-foreground hover:text-primary transition-all hover:scale-110"
             >
               <Github className="w-6 h-6" />
-            </a>
-            <a
-              href="mailto:basavap0203@gmail.com"
-              className="text-foreground hover:text-accent transition-all hover:scale-110"
-            >
-              <Mail className="w-6 h-6" />
             </a>
           </div>
         </div>

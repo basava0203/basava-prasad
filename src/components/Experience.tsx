@@ -122,7 +122,7 @@ const Experience = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-2">
-                  B.E, Computer Science & Engineering
+                  B.E (Bachelor of Engineering), Computer Science & Engineering
                 </h3>
                 <p className="text-xl text-secondary glow-purple">
                   Guru Nanak Dev Engineering College, Bidar, Karnataka
