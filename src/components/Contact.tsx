@@ -35,8 +35,8 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "linkedin.com/in/basava-prasad",
-      href: "https://linkedin.com/in/basava-prasad",
+      value: "linkedin.com/in/basava-prasad-9b1739382",
+      href: "https://www.linkedin.com/in/basava-prasad-9b1739382/",
       color: "text-accent",
     },
     {

@@ -125,7 +125,7 @@ const Experience = () => {
                   B.E, Computer Science & Engineering
                 </h3>
                 <p className="text-xl text-secondary glow-purple">
-                  Guru Nanak Dev Engineering College
+                  Guru Nanak Dev Engineering College, Bidar, Karnataka
                 </p>
               </div>
               <div className="mt-4 md:mt-0 text-muted-foreground">

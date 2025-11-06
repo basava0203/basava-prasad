@@ -116,7 +116,7 @@ const Hero = () => {
             style={{ animationDelay: "1.2s" }}
           >
             <a
-              href="https://linkedin.com/in/basava-prasad"
+              href="https://www.linkedin.com/in/basava-prasad-9b1739382/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-all hover:scale-110"
