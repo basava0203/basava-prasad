@@ -25,10 +25,10 @@ import { toast } from "sonner";
   Make sure to enable email notifications in your Google Form settings!
 */
 
-const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScsffbRKkG07lAZJYALimrSiREYKQyEuWbnmXF7YfQvKM3zSw/viewform?usp=dialog";
-const ENTRY_NAME = "entry.326288328";    // Replace with actual entry ID
-const ENTRY_EMAIL = "entry.221892588";   // Replace with actual entry ID  
-const ENTRY_MESSAGE = "entry.338124796"; // Replace with actual entry ID
+const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScsffbRKkG07lAZJYALimrSiREYKQyEuWbnmXF7YfQvKM3zSw/formResponse";
+const ENTRY_NAME = "entry.326288328";
+const ENTRY_EMAIL = "entry.221892588";
+const ENTRY_MESSAGE = "entry.338124796";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
