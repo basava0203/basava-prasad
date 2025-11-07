@@ -1,35 +1,34 @@
 import { useState } from "react";
-import { Mail, MapPin, Linkedin, Github, Send, Loader2 } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
-import { z } from "zod";
 
-// EmailJS Configuration
-const EMAILJS_PUBLIC_KEY = "7z9jVAS6w58OAPueG";
-const EMAILJS_SERVICE_ID = "service_oipb1r5";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // TODO: Replace with your actual template ID from EmailJS dashboard
+/* 
+  GOOGLE FORMS INTEGRATION SETUP:
+  
+  To complete the setup, follow these steps:
+  1. Go to https://forms.google.com and create a new form
+  2. Add these fields:
+     - Name (Short answer)
+     - Email (Short answer)  
+     - Message (Paragraph)
+  3. Click the Send button, then click the link icon (<>) to get the pre-filled link
+  4. Right-click on your form preview and "View Page Source"
+  5. Look for: action="https://docs.google.com/forms/d/e/[FORM_ID]/formResponse"
+  6. Replace GOOGLE_FORM_ACTION_URL below with that full URL
+  7. Find the entry IDs (entry.XXXXXXXXX) for each field in the source
+  8. Replace the ENTRY_* values below with your actual entry IDs
+  
+  Your email (basavap0203@gmail.com) will receive notifications when the form is submitted.
+  Make sure to enable email notifications in your Google Form settings!
+*/
 
-// Form validation schema
-const contactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, "Name is required")
-    .max(100, "Name must be less than 100 characters"),
-  email: z
-    .string()
-    .trim()
-    .email("Invalid email address")
-    .max(255, "Email must be less than 255 characters"),
-  message: z
-    .string()
-    .trim()
-    .min(1, "Message is required")
-    .max(1000, "Message must be less than 1000 characters"),
-});
+const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+const ENTRY_NAME = "entry.123456789";    // Replace with actual entry ID
+const ENTRY_EMAIL = "entry.987654321";   // Replace with actual entry ID  
+const ENTRY_MESSAGE = "entry.456789123"; // Replace with actual entry ID
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -37,60 +36,44 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<{
-    name?: string;
-    email?: string;
-    message?: string;
-  }>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors({});
 
-    // Validate form data
-    try {
-      contactSchema.parse(formData);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) {
-            fieldErrors[err.path[0].toString()] = err.message;
-          }
-        });
-        setErrors(fieldErrors);
-        toast.error("Please check the form for errors");
-        return;
-      }
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast.error("Please fill in all fields");
+      return;
     }
 
-    setIsSubmitting(true);
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
 
     try {
-      // Initialize EmailJS
-      emailjs.init(EMAILJS_PUBLIC_KEY);
+      // Create form data for Google Forms
+      const googleFormData = new FormData();
+      googleFormData.append(ENTRY_NAME, formData.name);
+      googleFormData.append(ENTRY_EMAIL, formData.email);
+      googleFormData.append(ENTRY_MESSAGE, formData.message);
 
-      // Send email using EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        }
-      );
+      // Submit to Google Forms
+      await fetch(GOOGLE_FORM_ACTION_URL, {
+        method: 'POST',
+        body: googleFormData,
+        mode: 'no-cors', // Required for Google Forms cross-origin submission
+      });
 
       toast.success("Thanks for reaching out! I'll get back to you soon.");
+      
+      // Reset form
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("EmailJS Error:", error);
-      toast.error(
-        "Failed to send message. Please try again or email me directly at basavap0203@gmail.com"
-      );
-    } finally {
-      setIsSubmitting(false);
+      console.error("Form submission error:", error);
+      toast.error("Failed to send message. Please email me directly at basavap0203@gmail.com");
     }
   };
 
@@ -202,18 +185,11 @@ const Contact = () => {
                 <Input
                   id="name"
                   value={formData.name}
-                  onChange={(e) => {
-                    setFormData({ ...formData, name: e.target.value });
-                    if (errors.name) setErrors({ ...errors, name: undefined });
-                  }}
-                  disabled={isSubmitting}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   className="bg-card/50 border-border focus:border-primary transition-colors"
                   placeholder="Your name"
                 />
-                {errors.name && (
-                  <p className="text-destructive text-sm mt-1">{errors.name}</p>
-                )}
               </div>
 
               <div>
@@ -227,18 +203,11 @@ const Contact = () => {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => {
-                    setFormData({ ...formData, email: e.target.value });
-                    if (errors.email) setErrors({ ...errors, email: undefined });
-                  }}
-                  disabled={isSubmitting}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   className="bg-card/50 border-border focus:border-primary transition-colors"
                   placeholder="your.email@example.com"
                 />
-                {errors.email && (
-                  <p className="text-destructive text-sm mt-1">{errors.email}</p>
-                )}
               </div>
 
               <div>
@@ -251,41 +220,21 @@ const Contact = () => {
                 <Textarea
                   id="message"
                   value={formData.message}
-                  onChange={(e) => {
-                    setFormData({ ...formData, message: e.target.value });
-                    if (errors.message)
-                      setErrors({ ...errors, message: undefined });
-                  }}
-                  disabled={isSubmitting}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   rows={5}
                   className="bg-card/50 border-border focus:border-primary transition-colors resize-none"
                   placeholder="Tell me about your project or just say hi!"
                 />
-                {errors.message && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.message}
-                  </p>
-                )}
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/80 text-primary-foreground box-glow-blue font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-primary hover:bg-primary/80 text-primary-foreground box-glow-blue font-semibold"
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
-                  </>
-                )}
+                <Send className="w-4 h-4 mr-2" />
+                Send Message
               </Button>
             </form>
           </div>
