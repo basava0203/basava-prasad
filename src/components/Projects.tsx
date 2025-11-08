@@ -13,7 +13,7 @@ const Projects = () => {
       gradient: "from-primary to-secondary",
     },
     {
-      title: "Cloud Secrets Management",
+      title: "Managing Secrets Using Cloud",
       subtitle: "AWS & Snowflake Integration",
       description:
         "Developed a robust cloud-based secrets management system integrating AWS services with Snowflake for secure data handling. Selected for 47th KSCST competition in 2024.",
