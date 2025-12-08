@@ -1,4 +1,4 @@
-import { Code, Database, Cloud, TestTube, Wrench } from "lucide-react";
+import { Code, Database, Cloud, TestTube, Wrench, BarChart3 } from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
@@ -51,6 +51,17 @@ const Skills = () => {
       color: "text-secondary",
       glow: "box-glow-purple",
       skills: [{ name: "Selenium", level: 85 }],
+    },
+    {
+      icon: BarChart3,
+      title: "Data Analytics",
+      color: "text-accent",
+      glow: "box-glow-green",
+      skills: [
+        { name: "Python", level: 85 },
+        { name: "SQL", level: 85 },
+        { name: "Power BI", level: 85 },
+      ],
     },
   ];
 
@@ -132,41 +143,6 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Future Interests Section */}
-        <div className="mt-20 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-          <div className="text-accent font-mono mb-6 glow-green">
-            {'>'} future_interests.explore()
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="glass rounded-xl p-6 hover:border-primary/40 transition-all duration-300 group">
-              <div className="text-2xl font-bold text-primary mb-3 glow-blue">
-                DevOps Pathway
-              </div>
-              <p className="text-foreground/80">
-                Exploring CI/CD pipelines, containerization with Docker, and
-                Kubernetes orchestration for scalable deployments.
-              </p>
-            </div>
-            <div className="glass rounded-xl p-6 hover:border-secondary/40 transition-all duration-300 group">
-              <div className="text-2xl font-bold text-secondary mb-3 glow-purple">
-                Data Analytics
-              </div>
-              <p className="text-foreground/80">
-                Diving deep into data visualization, statistical analysis, and
-                machine learning to derive actionable insights.
-              </p>
-            </div>
-            <div className="glass rounded-xl p-6 hover:border-accent/40 transition-all duration-300 group">
-              <div className="text-2xl font-bold text-accent mb-3 glow-green">
-                Cloud Technologies
-              </div>
-              <p className="text-foreground/80">
-                Advancing expertise in multi-cloud architectures, serverless
-                computing, and cloud-native application development.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
