@@ -1,7 +1,22 @@
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Calendar, MapPin, ExternalLink } from "lucide-react";
 
 const Experience = () => {
   const experiences = [
+    {
+      title: "Web Development Intern",
+      company: "Yuga Yatra Retail (OPC) Private Limited",
+      location: "Remote",
+      period: "October 2025 - December 2025",
+      achievements: [
+        "Worked on front-end development using HTML, CSS, JavaScript, and React",
+        "Contributed to Freshin10 - an online daily vegetable and fruits marketplace website",
+        "Proofread and refined website components ensuring quality and consistency",
+        "Collaborated on bolsaathi.com - a multilingual language learning application",
+        "Participated in development of oldagehomeindia.com - a platform for old age homes",
+      ],
+      tech: ["HTML", "CSS", "JavaScript", "React"],
+      certificateLink: "https://www.linkedin.com/posts/basava-prasad-9b1739382_and-here-completes-a-part-of-my-journey-activity-7410723597419380737-3mEH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5v6VUB_ggaRfAJQ5vebZgcj6jhvuVsH7E",
+    },
     {
       title: "Full Stack Developer Intern",
       company: "Kodnest Technologies",
@@ -106,6 +121,18 @@ const Experience = () => {
                         </span>
                       ))}
                     </div>
+
+                    {exp.certificateLink && (
+                      <a
+                        href={exp.certificateLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 mt-4 text-accent hover:text-primary transition-colors glow-green"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>View Completion Certificate</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
