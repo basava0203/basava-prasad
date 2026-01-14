@@ -45,6 +45,14 @@ const Projects = () => {
       name: "Heart Disease Prediction Dashboard",
       link: "https://www.linkedin.com/posts/basava-prasad-9b1739382_healthcareanalytics-powerbi-clinicalanalytics-activity-7402677619026006016-mdsk",
     },
+    {
+      name: "Social Media Mental Health Sentiment Correlation Dashboard",
+      link: "https://www.linkedin.com/posts/basava-prasad-9b1739382_datascience-mentalhealth-socialmedia-activity-7415024873258889216--mjj",
+    },
+    {
+      name: "Sustainable Shopping Behaviour Analysis Dashboard",
+      link: "https://www.linkedin.com/posts/basava-prasad-9b1739382_sustainability-dataanalysis-greenconsumer-activity-7415025474936090624-Vdhf",
+    },
   ];
 
   return (
